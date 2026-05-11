@@ -1,0 +1,164 @@
+# ============ mvel-sandbox.yml ============
+
+compile:
+  # 类白名单（空表示不限制，非空则只允许这些类）
+  classWhitelist: []
+
+  # 类黑名单（优先级高于白名单）
+  classBlacklist:
+    - "java.lang.Runtime"
+    - "java.lang.ProcessBuilder"
+    - "java.lang.System"
+    - "java.lang.Thread"
+    - "java.lang.ClassLoader"
+    - "java.lang.reflect.*"
+    - "java.io.FileInputStream"
+    - "java.io.FileOutputStream"
+    - "java.nio.file.Files"
+    - "java.net.*"
+    - "sun.misc.Unsafe"
+
+  # 方法黑名单
+  methodBlacklist:
+    - "java.lang.System.exit"
+    - "java.lang.System.load*"
+    - "java.lang.System.set*"
+    - "java.lang.Runtime.exec"
+    - "java.lang.Runtime.addShutdownHook"
+    - "java.lang.ProcessBuilder.*"
+    - "java.lang.Thread.start"
+    - "java.lang.Thread.stop"
+    - "java.lang.Class.forName"
+    - "java.lang.reflect.Method.invoke"
+    - "java.lang.reflect.Field.set*"
+    - "java.lang.Object.getClass"
+    - "java.lang.Object.wait"
+    - "java.lang.Object.notify*"
+
+  # 属性黑名单
+  propertyBlacklist:
+    - "class"
+    - "classLoader"
+    - "declaredFields"
+    - "declaredMethods"
+    - "declaredConstructors"
+    - "superclass"
+    - "interfaces"
+    - "protectionDomain"
+
+  # 严格模式：只允许显式导入
+  strictMode: false
+
+  # 允许裸方法调用
+  allowNakedMethodCall: false
+
+  # 允许 new 关键字
+  allowNew: false
+
+  # 允许的包（strictMode=true 时生效）
+  allowedPackages:
+    - "java.lang"
+    - "java.util"
+    - "java.math"
+    - "java.time"
+
+runtime:
+  # 最大变量解析深度
+  maxVariableDepth: 5
+
+  # 最大变量数量
+  maxVariableCount: 50
+
+  # 最大迭代次数
+  maxIterationCount: 1000
+
+  # 只读模式
+  readOnly: true
+
+  # 变量白名单
+  variableWhitelist: []
+
+  # 变量黑名单
+  variableBlacklist:
+    - "System"
+    - "Runtime"
+    - "Thread"
+    - "ClassLoader"
+    - "ProcessBuilder"
+
+  # 最大字符串长度
+  maxStringLength: 10000
+
+  # 最大集合大小
+  maxCollectionSize: 1000
+
+  # 执行超时（毫秒）
+  executionTimeoutMs: 5000
+
+  # 最大内存占用（字节）
+  maxMemoryBytes: 10485760  # 10MB
+
+sql:
+  # 启用 SQL 集成
+  enabled: true
+
+  # SQL 关键字黑名单
+  forbiddenKeywords:
+    - "DROP"
+    - "DELETE"
+    - "TRUNCATE"
+    - "ALTER"
+    - "GRANT"
+    - "REVOKE"
+    - "EXEC"
+    - "EXECUTE"
+    - "INTO OUTFILE"
+    - "LOAD_FILE"
+    - "UNION"
+    - "INSERT"
+    - "UPDATE"
+    - "MERGE"
+    - "CALL"
+
+  # 允许的操作
+  allowedOperations:
+    - "SELECT"
+
+  # 最大返回行数
+  maxRows: 1000
+
+  # 查询超时（秒）
+  queryTimeoutSeconds: 10
+
+  # 允许的表
+  allowedTables: []
+
+  # 禁止的表
+  forbiddenTables:
+    - "users_password"
+    - "system_config"
+
+  # 字段级控制
+  allowedFields: {}
+
+  # 要求参数化查询
+  requireParameterized: true
+
+audit:
+  # 启用审计
+  enabled: true
+
+  # 日志路径
+  logPath: "/var/log/mvel-audit"
+
+  # 记录变量值（注意隐私）
+  logValues: false
+
+  # 日志保留天数
+  retentionDays: 30
+
+  # 控制台输出
+  consoleOutput: true
+
+  # 异步缓冲区大小
+  bufferSize: 1000
